@@ -17,6 +17,10 @@ const supportsHevcHardwareEncoding = (() => {
     return false;
   }
 
+  // m1 support HEVC hardware encoding 
+  // https://discussions.apple.com/thread/252233529
+  if(process.arch === 'arm64') return true;
+
   // Get the Intel Core generation, the `4` in `Intel(R) Core(TM) i7-4850HQ CPU @ 2.30GHz`
   // More info: https://www.intel.com/content/www/us/en/processors/processor-numbers.html
   const result = /Intel.*Core.*i(?:7|5)-(\d)/.exec(os.cpus()[0].model);
